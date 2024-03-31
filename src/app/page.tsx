@@ -1,10 +1,11 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
-import { SliceZone } from "@prismicio/react";
-import * as prismic from "@prismicio/client";
+import { SliceZone } from '@prismicio/react';
+import * as prismic from '@prismicio/client';
 
-import { createClient } from "@/prismicio";
-import { components } from "@/slices";
+import { createClient } from '@/prismicio';
+import { components } from '@/slices';
+import { Navigation } from '@/components/Navigation';
 
 // This component renders your homepage.
 //
@@ -14,14 +15,14 @@ import { components } from "@/slices";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const home = await client.getByUID("page", "home");
+  const home = await client.getByUID('page', 'home');
 
   return {
     title: prismic.asText(home.data.title),
     description: home.data.meta_description,
     openGraph: {
       title: home.data.meta_title ?? undefined,
-      images: [{ url: home.data.meta_image.url ?? "" }],
+      images: [{ url: home.data.meta_image.url ?? '' }],
     },
   };
 }
@@ -29,7 +30,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Index() {
   // The client queries content from the Prismic API
   const client = createClient();
-  const home = await client.getByUID("page", "home");
+  const home = await client.getByUID('page', 'home');
 
-  return <SliceZone slices={home.data.slices} components={components} />;
+  return (
+    <>
+      <Navigation client={client} />
+      <SliceZone slices={home.data.slices} components={components} />
+    </>
+  );
 }
