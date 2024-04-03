@@ -1,37 +1,31 @@
-import type { Content } from "@prismicio/client";
-import { PrismicNextLink } from "@prismicio/next";
+import { RichTextField } from '@prismicio/client';
 import {
-  PrismicRichText,
-  SliceComponentProps,
   JSXMapSerializer,
-} from "@prismicio/react";
-import styles from "./index.module.css";
+  PrismicRichText,
+  PrismicLink,
+} from '@prismicio/react';
 
-const components: JSXMapSerializer = {
-  hyperlink: ({ node, children }) => {
-    return <PrismicNextLink field={node.data}>{children}</PrismicNextLink>;
-  },
+export const richTextComponents: JSXMapSerializer = {
   label: ({ node, children }) => {
-    if (node.data.label === "codespan") {
+    if (node.data.label === 'codespan') {
       return <code>{children}</code>;
     }
   },
+  heading1: ({ children }) => (
+    <h1 className="font-bold text-4xl">{children}</h1>
+  ),
+  heading2: ({ children }) => <h2 className="font-bold text-xl">{children}</h2>,
+  heading3: ({ children }) => <h3 className="font-bold text-lg">{children}</h3>,
+  hyperlink: ({ children, node }) => (
+    <PrismicLink field={node.data} className="font-bold underline">
+      {children}
+    </PrismicLink>
+  ),
 };
 
-/**
- * Props for `RichText`.
- */
-type RichTextProps = SliceComponentProps<Content.RichTextSlice>;
-
-/**
- * Component for "RichText" Slices.
- */
-const RichText = ({ slice }: RichTextProps): JSX.Element => {
-  return (
-    <section className={styles.richtext}>
-      <PrismicRichText field={slice.primary.content} components={components} />
-    </section>
-  );
+interface RichTextProps {
+  field: RichTextField;
+}
+export const RichText = ({ field }: RichTextProps) => {
+  return <PrismicRichText field={field} components={richTextComponents} />;
 };
-
-export default RichText;
