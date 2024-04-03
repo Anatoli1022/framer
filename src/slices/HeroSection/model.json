@@ -1,0 +1,74 @@
+{
+  "id": "hero_secrion",
+  "type": "SharedSlice",
+  "name": "HeroSection",
+  "description": "HeroSecrion",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrowheadline": {
+          "type": "Text",
+          "config": {
+            "label": "eyebrowHeadline",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading1,heading2,heading5,heading3,heading6,heading4"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "calltoactionlabel": {
+          "type": "Text",
+          "config": {
+            "label": "callToActionLabel",
+            "placeholder": ""
+          }
+        },
+        "calltoactionlink": {
+          "type": "Link",
+          "config": {
+            "label": "callToActionLink",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "infolabel": {
+          "type": "Text",
+          "config": {
+            "label": "infoLabel",
+            "placeholder": ""
+          }
+        },
+        "info": {
+          "type": "Link",
+          "config": {
+            "label": "info",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
