@@ -4,5 +4,8 @@ import dynamic from "next/dynamic";
 
 export const components = {
   hero_secrion: dynamic(() => import("./HeroSection")),
+  more_effective: dynamic(() => import("./MoreEffective")),
   rich_text: dynamic(() => import("./RichText")),
+  section_logos: dynamic(() => import("./SectionLogos")),
+  user_comments_section: dynamic(() => import("./UserCommentsSection")),
 };
