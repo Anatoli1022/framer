@@ -9,17 +9,23 @@ export const Navigation = async ({
   const navigation = await client.getSingle('navigation');
 
   return (
-    <nav className="pt-5 max-w-5xl ml-auto mr-auto flex justify-between">
+    <nav className="pt-5 max-w-7xl ml-auto mr-auto flex justify-between">
       <div>logo</div>
       <ul className="flex gap-x-6">
         {isFilled.group(navigation.data.menu_items) &&
           navigation.data.menu_items.map((item) => {
             return (
-              <li key={item.label} >
-                <PrismicLink className="text-black opacity-60 text-base" field={item.link}>{item.label}</PrismicLink>
+              <li key={item.label}>
+                <PrismicLink
+                  className="text-black opacity-60 text-base"
+                  field={item.link}
+                >
+                  {item.label}
+                </PrismicLink>
               </li>
             );
           })}
+          <li>button</li>
       </ul>
     </nav>
   );
