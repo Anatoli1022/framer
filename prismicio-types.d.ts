@@ -4,6 +4,75 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type HomepageDocumentDataSlicesSlice =
+  | MoreEffectiveSlice
+  | UserCommentsSectionSlice
+  | SectionLogosSlice
+  | HeroSecrionSlice;
+
+/**
+ * Content for HomePage documents
+ */
+interface HomepageDocumentData {
+  /**
+   * Slice Zone field in *HomePage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice> /**
+   * Meta Description field in *HomePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: homepage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *HomePage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *HomePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: homepage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * HomePage document from Prismic
+ *
+ * - **API ID**: `homepage`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HomepageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<HomepageDocumentData>,
+    "homepage",
+    Lang
+  >;
+
 /**
  * Item in *Navigation → Menu items*
  */
@@ -68,15 +137,15 @@ type PageDocumentDataSlicesSlice = RichTextSlice;
  */
 interface PageDocumentData {
   /**
-   * Title field in *Page*
+   * title field in *Page*
    *
-   * - **Field Type**: Title
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: page.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  title: prismic.TitleField;
+  title: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Page*
@@ -133,34 +202,265 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = NavigationDocument | PageDocument;
+export type AllDocumentTypes =
+  | HomepageDocument
+  | NavigationDocument
+  | PageDocument;
 
 /**
- * Default variation for Hero Slice
+ * Primary content in *HeroSection → Primary*
+ */
+export interface HeroSecrionSliceDefaultPrimary {
+  /**
+   * eyebrowHeadline field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.eyebrowheadline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eyebrowheadline: prismic.KeyTextField;
+
+  /**
+   * title field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * description field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * callToActionLabel field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.calltoactionlabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  calltoactionlabel: prismic.KeyTextField;
+
+  /**
+   * callToActionLink field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.calltoactionlink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  calltoactionlink: prismic.LinkField;
+
+  /**
+   * infoLabel field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.infolabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  infolabel: prismic.KeyTextField;
+
+  /**
+   * info field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.info
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  info: prismic.LinkField;
+
+  /**
+   * image field in *HeroSection → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_secrion.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for HeroSection Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HeroSliceDefault = prismic.SharedSliceVariation<
+export type HeroSecrionSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<HeroSecrionSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *Hero*
+ * Slice variation for *HeroSection*
  */
-type HeroSliceVariation = HeroSliceDefault;
+type HeroSecrionSliceVariation = HeroSecrionSliceDefault;
 
 /**
- * Hero Shared Slice
+ * HeroSection Shared Slice
  *
- * - **API ID**: `hero`
- * - **Description**: Hero
+ * - **API ID**: `hero_secrion`
+ * - **Description**: HeroSecrion
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+export type HeroSecrionSlice = prismic.SharedSlice<
+  "hero_secrion",
+  HeroSecrionSliceVariation
+>;
+
+/**
+ * Primary content in *MoreEffective → Primary*
+ */
+export interface MoreEffectiveSliceDefaultPrimary {
+  /**
+   * span field in *MoreEffective → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.primary.span
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  span: prismic.KeyTextField;
+
+  /**
+   * title field in *MoreEffective → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *MoreEffective → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * image field in *MoreEffective → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *MoreEffective → Items*
+ */
+export interface MoreEffectiveSliceDefaultItem {
+  /**
+   * image field in *MoreEffective → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * title field in *MoreEffective → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *MoreEffective → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.items[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * label field in *MoreEffective → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * link field in *MoreEffective → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * arrow field in *MoreEffective → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: more_effective.items[].arrow
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  arrow: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for MoreEffective Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MoreEffectiveSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MoreEffectiveSliceDefaultPrimary>,
+  Simplify<MoreEffectiveSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *MoreEffective*
+ */
+type MoreEffectiveSliceVariation = MoreEffectiveSliceDefault;
+
+/**
+ * MoreEffective Shared Slice
+ *
+ * - **API ID**: `more_effective`
+ * - **Description**: MoreEffective
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MoreEffectiveSlice = prismic.SharedSlice<
+  "more_effective",
+  MoreEffectiveSliceVariation
+>;
 
 /**
  * Primary content in *RichText → Primary*
@@ -207,6 +507,151 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Primary content in *SectionLogos → Items*
+ */
+export interface SectionLogosSliceDefaultItem {
+  /**
+   * Image field in *SectionLogos → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_logos.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for SectionLogos Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionLogosSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<SectionLogosSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *SectionLogos*
+ */
+type SectionLogosSliceVariation = SectionLogosSliceDefault;
+
+/**
+ * SectionLogos Shared Slice
+ *
+ * - **API ID**: `section_logos`
+ * - **Description**: SectionLogos
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionLogosSlice = prismic.SharedSlice<
+  "section_logos",
+  SectionLogosSliceVariation
+>;
+
+/**
+ * Primary content in *UserCommentsSection → Primary*
+ */
+export interface UserCommentsSectionSliceDefaultPrimary {
+  /**
+   * span field in *UserCommentsSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: user_comments_section.primary.span
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  span: prismic.KeyTextField;
+
+  /**
+   * title field in *UserCommentsSection → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: user_comments_section.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *UserCommentsSection → Items*
+ */
+export interface UserCommentsSectionSliceDefaultItem {
+  /**
+   * text field in *UserCommentsSection → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: user_comments_section.items[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * avatar field in *UserCommentsSection → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: user_comments_section.items[].avatar
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  avatar: prismic.ImageField<never>;
+
+  /**
+   * name field in *UserCommentsSection → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: user_comments_section.items[].name
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField;
+
+  /**
+   * tegName field in *UserCommentsSection → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: user_comments_section.items[].tegname
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  tegname: prismic.RichTextField;
+}
+
+/**
+ * Default variation for UserCommentsSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type UserCommentsSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<UserCommentsSectionSliceDefaultPrimary>,
+  Simplify<UserCommentsSectionSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *UserCommentsSection*
+ */
+type UserCommentsSectionSliceVariation = UserCommentsSectionSliceDefault;
+
+/**
+ * UserCommentsSection Shared Slice
+ *
+ * - **API ID**: `user_comments_section`
+ * - **Description**: UserCommentsSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type UserCommentsSectionSlice = prismic.SharedSlice<
+  "user_comments_section",
+  UserCommentsSectionSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -217,6 +662,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      HomepageDocument,
+      HomepageDocumentData,
+      HomepageDocumentDataSlicesSlice,
       NavigationDocument,
       NavigationDocumentData,
       NavigationDocumentDataMenuItemsItem,
@@ -224,13 +672,28 @@ declare module "@prismicio/client" {
       PageDocumentData,
       PageDocumentDataSlicesSlice,
       AllDocumentTypes,
-      HeroSlice,
-      HeroSliceVariation,
-      HeroSliceDefault,
+      HeroSecrionSlice,
+      HeroSecrionSliceDefaultPrimary,
+      HeroSecrionSliceVariation,
+      HeroSecrionSliceDefault,
+      MoreEffectiveSlice,
+      MoreEffectiveSliceDefaultPrimary,
+      MoreEffectiveSliceDefaultItem,
+      MoreEffectiveSliceVariation,
+      MoreEffectiveSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      SectionLogosSlice,
+      SectionLogosSliceDefaultItem,
+      SectionLogosSliceVariation,
+      SectionLogosSliceDefault,
+      UserCommentsSectionSlice,
+      UserCommentsSectionSliceDefaultPrimary,
+      UserCommentsSectionSliceDefaultItem,
+      UserCommentsSectionSliceVariation,
+      UserCommentsSectionSliceDefault,
     };
   }
 }
