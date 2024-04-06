@@ -10,11 +10,11 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="mt-8 bg-gradient-to-b from-white to-blue-700 "
+      className="mt-8 bg-gradient-to-b from-white to-blue-700"
     >
       <div className="max-w-7xl ml-auto mr-auto flex justify-between items-center gap-x-6">
         <div className="max-w-lg">
-          <span className="text-xs font-medium border border-solid border-gray-300 rounded-lg py-2 px-3">
+          <span className="text-xs font-medium border border-solid border-gray-400 rounded-lg py-2 px-3">
             {slice.primary.eyebrowheadline}
           </span>
           <h1 className="text-8xl mt-7 font-bold ">
