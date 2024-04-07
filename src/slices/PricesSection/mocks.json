@@ -1,0 +1,89 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"span": {
+				"__TYPE__": "FieldContent",
+				"value": "examine",
+				"type": "Text"
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Speed"
+						}
+					}
+				]
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Labore commodo eu aliquip dolore Lorem magna pariatur consequat ullamco. Quis cupidatat mollit elit reprehenderit."
+						}
+					}
+				]
+			},
+			"popular": {
+				"__TYPE__": "FieldContent",
+				"value": "prepare",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"span",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "done",
+							"type": "Text"
+						}
+					],
+					[
+						"price",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "because",
+							"type": "Text"
+						}
+					],
+					[
+						"spantext",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "experiment",
+							"type": "Text"
+						}
+					],
+					[
+						"link",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "http://google.com"
+							}
+						}
+					],
+					[
+						"label",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "machinery",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
+	}
+]

@@ -1,0 +1,88 @@
+{
+  "id": "prices_section",
+  "type": "SharedSlice",
+  "name": "PricesSection",
+  "description": "PricesSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "span": {
+          "type": "Text",
+          "config": {
+            "label": "span",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2,heading3,heading4,heading5,heading6"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "popular": {
+          "type": "Text",
+          "config": {
+            "label": "popular",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "span": {
+          "type": "Text",
+          "config": {
+            "label": "span",
+            "placeholder": ""
+          }
+        },
+        "price": {
+          "type": "Text",
+          "config": {
+            "label": "price",
+            "placeholder": ""
+          }
+        },
+        "spantext": {
+          "type": "Text",
+          "config": {
+            "label": "spantext",
+            "placeholder": ""
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "link",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "label",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}
