@@ -10,7 +10,7 @@ export type TextProps = SliceComponentProps<Content.TextSlice>;
  * Component for "Text" Slices.
  */
 const Text = ({ slice }: TextProps): JSX.Element => {
-  // console.log(slice);
+
   const mostPopular = slice.primary.mostpopular === 'true';
 
   return (
