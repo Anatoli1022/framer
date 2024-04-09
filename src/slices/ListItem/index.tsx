@@ -11,7 +11,8 @@ export type TextProps = SliceComponentProps<Content.TextSlice>;
  */
 const Text = ({ slice }: TextProps): JSX.Element => {
 
-  const mostPopular = slice.primary.mostpopular === 'true';
+  const mostPopular = slice.primary.most_popular === 'true';
+
 
   return (
     <section
@@ -44,7 +45,7 @@ const Text = ({ slice }: TextProps): JSX.Element => {
           <PrismicLink
             field={slice.primary.link}
             className={`block mt-8 text-base font-medium  text-center rounded-xl py-1 border border-solid duration-200 
-       ${mostPopular ? 'text-black bg-white border-white hover:text-white hover:bg-black' : ' text-white bg-black border-black hover:text-black hover:bg-white'} `}
+       ${mostPopular ? 'text-black bg-white border-white hover:text-white hover:bg-transparent' : ' text-white bg-black border-black hover:text-black hover:bg-transparent'} `}
           >
             {slice.primary.label}
           </PrismicLink>
