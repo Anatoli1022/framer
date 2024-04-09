@@ -1,0 +1,89 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+					"width": 4160,
+					"height": 3120
+				},
+				"url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+				"width": 4160,
+				"height": 3120,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"span": {
+				"__TYPE__": "FieldContent",
+				"value": "author",
+				"type": "Text"
+			},
+			"price": {
+				"__TYPE__": "FieldContent",
+				"value": "take",
+				"type": "Text"
+			},
+			"spantext": {
+				"__TYPE__": "FieldContent",
+				"value": "title",
+				"type": "Text"
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "order",
+				"type": "Text"
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com"
+				}
+			},
+			"popular": {
+				"__TYPE__": "FieldContent",
+				"value": "arrangement",
+				"type": "Text"
+			},
+			"mostpopular": {
+				"__TYPE__": "FieldContent",
+				"value": "any",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"text",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Sint anim irure amet. Sint occaecat ut eiusmod anim duis dolor ullamco. Esse ullamco ullamco quis officia consectetur labore sunt nostrud consequat excepteur commodo deserunt."
+									}
+								}
+							]
+						}
+					]
+				]
+			}
+		]
+	}
+]

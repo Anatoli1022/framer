@@ -39,50 +39,7 @@
 		"items": [
 			{
 				"__TYPE__": "GroupItemContent",
-				"value": [
-					[
-						"span",
-						{
-							"__TYPE__": "FieldContent",
-							"value": "done",
-							"type": "Text"
-						}
-					],
-					[
-						"price",
-						{
-							"__TYPE__": "FieldContent",
-							"value": "because",
-							"type": "Text"
-						}
-					],
-					[
-						"spantext",
-						{
-							"__TYPE__": "FieldContent",
-							"value": "experiment",
-							"type": "Text"
-						}
-					],
-					[
-						"link",
-						{
-							"__TYPE__": "LinkContent",
-							"value": {
-								"__TYPE__": "ExternalLink",
-								"url": "http://google.com"
-							}
-						}
-					],
-					[
-						"label",
-						{
-							"__TYPE__": "FieldContent",
-							"value": "machinery",
-							"type": "Text"
-						}
-					]
-				]
+				"value": []
 			}
 		]
 	}

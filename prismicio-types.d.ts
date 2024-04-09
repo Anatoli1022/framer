@@ -542,61 +542,6 @@ export interface PricesSectionSliceDefaultPrimary {
 }
 
 /**
- * Primary content in *PricesSection → Items*
- */
-export interface PricesSectionSliceDefaultItem {
-  /**
-   * span field in *PricesSection → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: prices_section.items[].span
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  span: prismic.KeyTextField;
-
-  /**
-   * price field in *PricesSection → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: prices_section.items[].price
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  price: prismic.KeyTextField;
-
-  /**
-   * spantext field in *PricesSection → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: prices_section.items[].spantext
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  spantext: prismic.KeyTextField;
-
-  /**
-   * link field in *PricesSection → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: prices_section.items[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField;
-
-  /**
-   * label field in *PricesSection → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: prices_section.items[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField;
-}
-
-/**
  * Default variation for PricesSection Slice
  *
  * - **API ID**: `default`
@@ -606,7 +551,7 @@ export interface PricesSectionSliceDefaultItem {
 export type PricesSectionSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<PricesSectionSliceDefaultPrimary>,
-  Simplify<PricesSectionSliceDefaultItem>
+  never
 >;
 
 /**
@@ -912,11 +857,11 @@ export type StreamlinedSectionSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *Text → Primary*
+ * Primary content in *ListItem → Primary*
  */
 export interface TextSliceDefaultPrimary {
   /**
-   * image field in *Text → Primary*
+   * image field in *ListItem → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -924,14 +869,84 @@ export interface TextSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * popular field in *ListItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.popular
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  popular: prismic.KeyTextField;
+
+  /**
+   * span field in *ListItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.span
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  span: prismic.KeyTextField;
+
+  /**
+   * price field in *ListItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.price
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  price: prismic.KeyTextField;
+
+  /**
+   * spantext field in *ListItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.spantext
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  spantext: prismic.KeyTextField;
+
+  /**
+   * label field in *ListItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * link field in *ListItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * mostpopular field in *ListItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.mostpopular
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  mostpopular: prismic.KeyTextField;
 }
 
 /**
- * Primary content in *Text → Items*
+ * Primary content in *ListItem → Items*
  */
 export interface TextSliceDefaultItem {
   /**
-   * text field in *Text → Items*
+   * text field in *ListItem → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -942,7 +957,7 @@ export interface TextSliceDefaultItem {
 }
 
 /**
- * Default variation for Text Slice
+ * Default variation for ListItem Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -955,12 +970,12 @@ export type TextSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *Text*
+ * Slice variation for *ListItem*
  */
 type TextSliceVariation = TextSliceDefault;
 
 /**
- * Text Shared Slice
+ * ListItem Shared Slice
  *
  * - **API ID**: `text`
  * - **Description**: Text
@@ -1102,7 +1117,6 @@ declare module "@prismicio/client" {
       MoreEffectiveSliceDefault,
       PricesSectionSlice,
       PricesSectionSliceDefaultPrimary,
-      PricesSectionSliceDefaultItem,
       PricesSectionSliceVariation,
       PricesSectionSliceDefault,
       RichTextSlice,

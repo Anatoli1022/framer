@@ -18,6 +18,24 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "prices_section": {
+              "type": "SharedSlice"
+            },
+            "streamlined_section": {
+              "type": "SharedSlice"
+            },
+            "sign_up_section": {
+              "type": "SharedSlice"
+            },
+            "more_effective": {
+              "type": "SharedSlice"
+            },
+            "user_comments_section": {
+              "type": "SharedSlice"
+            },
+            "section_logos": {
+              "type": "SharedSlice"
+            },
             "hero_secrion": {
               "type": "SharedSlice"
             }
