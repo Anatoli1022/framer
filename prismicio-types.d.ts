@@ -4,6 +4,109 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Footer → social_links*
+ */
+export interface FooterDocumentDataSocialLinksItem {
+  /**
+   * social_link field in *Footer → social_links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.social_links[].social_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  social_link: prismic.LinkField;
+
+  /**
+   * image_link field in *Footer → social_links*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.social_links[].image_link
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_link: prismic.ImageField<never>;
+}
+
+type FooterDocumentDataSlicesSlice = FooterItemSlice;
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * logo field in *Footer*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * logo_link field in *Footer*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.logo_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  logo_link: prismic.LinkField;
+
+  /**
+   * text field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * social_links field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.social_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social_links: prismic.GroupField<Simplify<FooterDocumentDataSocialLinksItem>>;
+
+  /**
+   * Slice Zone field in *Footer*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<FooterDocumentDataSlicesSlice>;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | PricesSectionSlice
   | StreamlinedSectionSlice
@@ -145,6 +248,61 @@ interface NavigationDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   menu_items: prismic.GroupField<Simplify<NavigationDocumentDataMenuItemsItem>>;
+
+  /**
+   * logo_link field in *Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.logo_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  logo_link: prismic.LinkField;
+
+  /**
+   * logo field in *Navigation*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * labellogo field in *Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.labellogo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  labellogo: prismic.KeyTextField;
+
+  /**
+   * get_free field in *Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.get_free
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  get_free: prismic.LinkField;
+
+  /**
+   * label_get_free field in *Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.label_get_free
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label_get_free: prismic.KeyTextField;
 }
 
 /**
@@ -236,10 +394,81 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 export type AllDocumentTypes =
+  | FooterDocument
   | HomepageDocument
   | ListDocument
   | NavigationDocument
   | PageDocument;
+
+/**
+ * Primary content in *FooterItem → Primary*
+ */
+export interface FooterItemSliceDefaultPrimary {
+  /**
+   * title field in *FooterItem → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_item.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *FooterItem → Items*
+ */
+export interface FooterItemSliceDefaultItem {
+  /**
+   * link field in *FooterItem → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_item.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * link_label field in *FooterItem → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_item.items[].link_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_label: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for FooterItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FooterItemSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FooterItemSliceDefaultPrimary>,
+  Simplify<FooterItemSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *FooterItem*
+ */
+type FooterItemSliceVariation = FooterItemSliceDefault;
+
+/**
+ * FooterItem Shared Slice
+ *
+ * - **API ID**: `footer_item`
+ * - **Description**: FooterItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FooterItemSlice = prismic.SharedSlice<
+  "footer_item",
+  FooterItemSliceVariation
+>;
 
 /**
  * Primary content in *HeroSection → Primary*
@@ -931,14 +1160,14 @@ export interface TextSliceDefaultPrimary {
   link: prismic.LinkField;
 
   /**
-   * mostpopular field in *ListItem → Primary*
+   * most_popular field in *ListItem → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text.primary.mostpopular
+   * - **API ID Path**: text.primary.most_popular
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  mostpopular: prismic.KeyTextField;
+  most_popular: prismic.KeyTextField;
 }
 
 /**
@@ -1093,6 +1322,10 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      FooterDocument,
+      FooterDocumentData,
+      FooterDocumentDataSocialLinksItem,
+      FooterDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
@@ -1106,6 +1339,11 @@ declare module "@prismicio/client" {
       PageDocumentData,
       PageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      FooterItemSlice,
+      FooterItemSliceDefaultPrimary,
+      FooterItemSliceDefaultItem,
+      FooterItemSliceVariation,
+      FooterItemSliceDefault,
       HeroSecrionSlice,
       HeroSecrionSliceDefaultPrimary,
       HeroSecrionSliceVariation,

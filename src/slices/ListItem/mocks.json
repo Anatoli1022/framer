@@ -58,9 +58,9 @@
 				"value": "arrangement",
 				"type": "Text"
 			},
-			"mostpopular": {
+			"most_popular": {
 				"__TYPE__": "FieldContent",
-				"value": "any",
+				"value": "military",
 				"type": "Text"
 			}
 		},

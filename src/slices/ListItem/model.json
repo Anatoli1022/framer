@@ -63,10 +63,10 @@
             "select": null
           }
         },
-        "mostpopular": {
+        "most_popular": {
           "type": "Text",
           "config": {
-            "label": "mostpopular",
+            "label": "most_popular",
             "placeholder": ""
           }
         }

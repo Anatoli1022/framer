@@ -29,6 +29,44 @@
             }
           }
         }
+      },
+      "logo_link": {
+        "type": "Link",
+        "config": {
+          "label": "logo_link",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "labellogo": {
+        "type": "Text",
+        "config": {
+          "label": "labellogo",
+          "placeholder": ""
+        }
+      },
+      "get_free": {
+        "type": "Link",
+        "config": {
+          "label": "get_free",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "label_get_free": {
+        "type": "Text",
+        "config": {
+          "label": "label_get_free",
+          "placeholder": ""
+        }
       }
     }
   }
