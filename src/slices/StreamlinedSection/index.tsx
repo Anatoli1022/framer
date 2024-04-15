@@ -1,6 +1,7 @@
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { PrismicText } from '@prismicio/react';
+import Shapes from './shapes'
 /**
  * Props for `StreamlinedSection`.
  */
@@ -32,7 +33,11 @@ const StreamlinedSection = ({
         <ul className="flex justify-center gap-x-4 mt-16">
           {slice.items.map((item, i) => {
             return (
-              <li key={i} className="p-10 rounded-3xl border border-solid border-gray-100 shadow-xl">
+              <li
+                key={i}
+                className="p-10 rounded-3xl border border-solid border-gray-100 shadow-xl"
+              >
+             <Shapes index={i}/>
                 <h3 className="text-2xl font-bold">
                   <PrismicText field={item.title} />
                 </h3>
