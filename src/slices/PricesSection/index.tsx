@@ -7,7 +7,7 @@ export type PricesSectionProps =
   SliceComponentProps<Content.PricesSectionSlice>;
 
 const PricesSection = ({ slice }: PricesSectionProps): JSX.Element => {
-  const client = createClient();
+
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -27,9 +27,9 @@ const PricesSection = ({ slice }: PricesSectionProps): JSX.Element => {
         <p className="ml-auto mr-auto text-xl font-normal mt-5 max-w-lg text-center">
           <PrismicText field={slice.primary.text} />
         </p>
-        <div className="flex mt-10  justify-center gap-x-6 items-end">
-          <List client={client} />
-        </div>
+        <ul className="flex mt-10  justify-center gap-x-6 items-end">
+          <List  />
+        </ul>
       </div>
     </section>
   );

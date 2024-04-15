@@ -1,15 +1,8 @@
-
-
-import { Client, Content } from '@prismicio/client';
 import { components } from '@/slices';
 import { SliceZone } from '@prismicio/react';
-
-export const List = async ({
-  client,
-}: {
-  client: Client<Content.AllDocumentTypes>;
-}): Promise<JSX.Element> => {
- 
+import { createClient } from '@/prismicio';
+export const List = async () => {
+  const client = createClient();
   const list = await client.getSingle('list');
 
   return <SliceZone slices={list.data.slices} components={components} />;
