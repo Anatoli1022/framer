@@ -27,7 +27,7 @@ const PricesSection = ({ slice }: PricesSectionProps): JSX.Element => {
         <p className="ml-auto mr-auto text-xl font-normal mt-5 max-w-lg text-center">
           <PrismicText field={slice.primary.text} />
         </p>
-        <ul className="flex mt-10  justify-center gap-x-6 items-end">
+        <ul className="flex mt-10  justify-center gap-x-6 items-end lg:flex-col lg:items-center lg:gap-y-6">
           <List  />
         </ul>
       </div>

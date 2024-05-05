@@ -30,7 +30,7 @@ const StreamlinedSection = ({
         <p className="text-xl font-normal mt-5 ml-auto mr-auto max-w-lg">
           <PrismicText field={slice.primary.text} />
         </p>
-        <ul className="flex justify-center gap-x-4 mt-16">
+        <ul className="flex justify-center gap-x-4 mt-16 lg:flex-col lg:items-center lg:gap-y-6">
           {slice.items.map((item, i) => {
             return (
               <li

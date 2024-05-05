@@ -16,11 +16,11 @@ const SectionLogos = ({ slice }: SectionLogosProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className="mt-14"
     >
-      <div className="max-w-7xl ml-auto mr-auto items-center gap-x-6">
-        <ul className="flex gap-x-14 justify-center">
+      <div className="max-w-7xl ml-auto mr-auto ">
+        <ul className="flex gap-x-14 justify-center items-start gap-y-2 lg:flex-wrap ">
           {slice.items.map((image, i) => {
             return (
-              <li key={i}>
+              <li key={i} className="w">
                 <PrismicNextImage field={image.image} />
               </li>
             );

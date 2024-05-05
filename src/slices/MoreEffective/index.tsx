@@ -33,11 +33,11 @@ const MoreEffective = ({ slice }: MoreEffectiveProps): JSX.Element => {
         <div className="mt-10">
           <PrismicImage field={slice.primary.image} />
         </div>
-        <ul className="flex mt-20 gap-x-5">
+        <ul className="flex mt-20 gap-5  lg:flex-wrap justify-center items-center">
           {slice.items.map((item, i) => {
             return (
-              <li key={i}>
-                <PrismicImage field={item.image} />
+              <li key={i} className='max-w-64'>
+                <PrismicImage field={item.image} className='w-4'/>
                 <h3 className="mt-3 font-bold text-lg">
                   <PrismicText field={item.title} />
                 </h3>
@@ -49,7 +49,7 @@ const MoreEffective = ({ slice }: MoreEffectiveProps): JSX.Element => {
                   className="flex items-center mt-2"
                 >
                   {item.label}
-                  <PrismicImage field={item.arrow} className="block ml-2" />
+                  <PrismicImage field={item.arrow} className="block ml-2 w-5" />
                 </PrismicLink>
               </li>
             );

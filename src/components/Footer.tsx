@@ -7,7 +7,7 @@ export const Footer = async () => {
   const data = await client.getSingle('footer');
 
   return (
-    <footer className="pt-10 pb-12 bg-black">
+    <footer className="pt-10 pb-12 bg-black px-2">
       <div className="  max-w-7xl ml-auto mr-auto flex justify-between">
         <div className="max-w-60">
           <PrismicLink field={data.data.logo_link}>

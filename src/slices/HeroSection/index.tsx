@@ -10,7 +10,7 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="mt-8 bg-gradient-to-b from-white to-blue-700"
+      className="mt-8 bg-gradient-to-b from-white to-blue-700 lg:pb-11"
     >
       <div className="max-w-7xl ml-auto mr-auto flex justify-between items-center gap-x-6">
         <div className="max-w-lg">
