@@ -40,7 +40,11 @@ export default function Shapes({ index }) {
           intensity={Math.PI}
         />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <Box frameSpeed={frameSpeed} />
+        {index === 0 ? (
+          <Box frameSpeed={frameSpeed} />
+        ) : (
+          <Triangle frameSpeed={frameSpeed} />
+        )}
         <OrbitControls />
       </Canvas>
     </div>
@@ -58,7 +62,30 @@ export function Box({ frameSpeed }) {
       <meshBasicMaterial>
         <GradientTexture
           stops={[0, 1]}
-          colors={['#7366bd', '#2c0be5']}
+          colors={['#FC5C7D', '#2c0be5']}
+          size={329}
+        />
+      </meshBasicMaterial>
+    </mesh>
+  );
+}
+
+export function Triangle({ frameSpeed }) {
+  const ref = useRef();
+  useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
+
+  return (
+    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / 1, -10, -10]}>
+      <tetrahedronGeometry
+        attach="geometry"
+        args={[1, 0]}
+        onClick={() => click()}
+      />
+
+      <meshBasicMaterial>
+        <GradientTexture
+          stops={[0, 1]}
+          colors={['#b92b27', '#2c0be5']}
           size={329}
         />
       </meshBasicMaterial>
