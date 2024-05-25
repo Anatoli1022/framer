@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { useRef, useState } from 'react';
 import { GradientTexture, OrbitControls } from '@react-three/drei';
 
-export default function Shapes({ index }) {
+export default function Shapes({ number, className }) {
   const [frameSpeed, setFrameSpeed] = useState(0.3);
   const click = () => {
     setFrameSpeed(frameSpeed + 1);
@@ -23,9 +23,13 @@ export default function Shapes({ index }) {
   };
 
   return (
-    <div>
+    <div className={className}>
       <Canvas
-        style={{ height: '329px' }}
+        style={
+          number === 1
+            ? { height: '600px', width: '400px' }
+            : { height: '200px', width: '200px' }
+        }
         onClick={() => click()}
         className="cursor-pointer"
         shadows
@@ -39,57 +43,74 @@ export default function Shapes({ index }) {
           decay={0}
           intensity={Math.PI}
         />
-        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        {index === 0 ? (
-          <Box frameSpeed={frameSpeed} />
-        ) : (
-          <Triangle frameSpeed={frameSpeed} />
-        )}
+        <pointLight position={[-8, -8, -8]} decay={0} intensity={Math.PI} />
+        {number === 1 && <Dodecahedron frameSpeed={frameSpeed} />}
+        {number === 2 && <Capsule frameSpeed={frameSpeed} />}{' '}
+        {number === 3 && <Octahedron frameSpeed={frameSpeed} />}
         {/* <OrbitControls /> */}
       </Canvas>
     </div>
   );
 }
 
-export function Box({ frameSpeed }) {
+export function Capsule({ frameSpeed }) {
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
 
   const ref = useRef();
   return (
-    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / 1, -10, -10]}>
-      <boxGeometry args={[1, 1, 1]} onClick={() => click} />
+    <mesh ref={ref} position={[0, 0, 1]} rotation={[Math.PI / 1, -10, -10]}>
+      <capsuleGeometry args={[1, 1, 8, 20]} onClick={() => click} />
 
-      <meshStandardMaterial>
+      <meshNormalMaterial>
         <GradientTexture
           stops={[0, 1]}
           colors={['#FC5C7D', '#2c0be5']}
           size={329}
         />
-      </meshStandardMaterial>
+      </meshNormalMaterial>
     </mesh>
   );
 }
 
-export function Triangle({ frameSpeed }) {
+export function Octahedron({ frameSpeed }) {
+  useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
+
+  const ref = useRef();
+  return (
+    <mesh ref={ref} position={[0, 0, 1]} rotation={[Math.PI / 1, -10, -10]}>
+   <octahedronGeometry onClick={() => click}/>
+
+      <meshNormalMaterial>
+        <GradientTexture
+          stops={[0, 1]}
+          colors={['#FC5C7D', '#2c0be5']}
+          size={329}
+        />
+      </meshNormalMaterial>
+    
+    </mesh>
+  );
+}
+
+export function Dodecahedron({ frameSpeed }) {
   const ref = useRef();
   useFrame((state, delta) => (ref.current.rotation.y += frameSpeed * delta));
 
   return (
-    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / -10, -1, -10]}>
-      <tetrahedronGeometry
+    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / -20, 0, -10]}>
+      <dodecahedronGeometry
         attach="geometry"
-        args={[1, 0]}
+        args={[1, 0, 1]}
         onClick={() => click()}
       />
 
-      <meshStandardMaterial>
+      <meshNormalMaterial>
         <GradientTexture
           stops={[0, 1]}
-          colors={['#b92b27', '#2c0be5']}
+          colors={['#12c2e9', '#c471ed']}
           size={329}
         />
-      </meshStandardMaterial>
+      </meshNormalMaterial>
     </mesh>
   );
 }
-
