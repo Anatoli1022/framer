@@ -2,6 +2,7 @@ import { Content } from '@prismicio/client';
 import { PrismicImage, SliceComponentProps } from '@prismicio/react';
 
 import { PrismicText, PrismicLink } from '@prismicio/react';
+import Shapes from './shapes';
 
 export type HeroSectionProps = SliceComponentProps<Content.HeroSecrionSlice>;
 
@@ -10,7 +11,7 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="mt-8 bg-gradient-to-b from-white to-blue-700 lg:pb-11"
+      className="mt-8 bg-gradient-to-b from-white to-blue-700  pb-11"
     >
       <div className="max-w-7xl ml-auto mr-auto flex justify-between items-center gap-x-6">
         <div className="max-w-lg">
@@ -40,8 +41,10 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
             </PrismicLink>
           </div>
         </div>
-        <div>
-          <PrismicImage field={slice.primary.image} />
+        <div className="relative">
+          <Shapes className={''} number={1} />
+          <Shapes className={'absolute top-0 -left-40'} number={2} />
+          <Shapes className={'absolute bottom-0 -right-0'} number={3} />
         </div>
       </div>
     </section>

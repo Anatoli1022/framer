@@ -1,6 +1,7 @@
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { PrismicText, PrismicImage, PrismicLink } from '@prismicio/react';
+import Shapes from './shapes';
 
 export type SignUpSectionProps =
   SliceComponentProps<Content.SignUpSectionSlice>;
@@ -10,9 +11,9 @@ const SignUpSection = ({ slice }: SignUpSectionProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-gradient-to-b from-white bg-indigo-200 mt-28 pb-28"
+      className="bg-gradient-to-b from-white bg-indigo-200 mt-28 pb-28 "
     >
-      <div className="max-w-7xl ml-auto mr-auto text-center">
+      <div className="max-w-7xl ml-auto mr-auto text-center relative">
         <h2 className="text-6xl font-bold">
           <PrismicText field={slice.primary.title} />
         </h2>
@@ -37,6 +38,8 @@ const SignUpSection = ({ slice }: SignUpSectionProps): JSX.Element => {
             />
           </PrismicLink>
         </div>
+        <Shapes number={1} className={'absolute left-16 -top-10'} />
+        <Shapes number={2} className={'absolute right-16 top-10'} />
       </div>
     </section>
   );
