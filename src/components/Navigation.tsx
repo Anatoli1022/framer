@@ -9,7 +9,7 @@ export const Navigation = async ({
   const navigation = await client.getSingle('navigation');
 
   return (
-    <nav className="pt-5 max-w-7xl ml-auto mr-auto flex justify-between items-center">
+    <nav className=" max-w-7xl ml-auto mr-auto flex justify-between items-center">
       <PrismicLink field={navigation.data.logo_link}>
         <PrismicImage field={navigation.data.logo} />
       </PrismicLink>

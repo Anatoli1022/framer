@@ -8,7 +8,7 @@ export const Footer = async () => {
 
   return (
     <footer className="pt-10 pb-12 bg-black px-2">
-      <div className="  max-w-7xl ml-auto mr-auto flex justify-between">
+      <div className="  max-w-7xl ml-auto mr-auto flex justify-between sm:flex-col">
         <div className="max-w-60">
           <PrismicLink field={data.data.logo_link}>
             <PrismicImage field={data.data.logo} />
@@ -28,7 +28,7 @@ export const Footer = async () => {
             })}
           </ul>
         </div>
-        <div className="flex">
+        <div className="flex gap-16 lg:gap-10  sm:flex-wrap sm:mt-6">
           <SliceZone slices={data.data.slices} components={components} />
         </div>
       </div>

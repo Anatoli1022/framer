@@ -36,7 +36,7 @@ export type FooterItemProps = SliceComponentProps<Content.FooterItemSlice>;
  */
 const FooterItem = ({ slice }: FooterItemProps): JSX.Element => {
   return (
-    <ul className='ml-12 first:ml-0'>
+    <ul >
       <li>
         <h3 className='text-white'>
           <PrismicText field={slice.primary.title} />

@@ -13,7 +13,7 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className="mt-8 bg-gradient-to-b from-white to-blue-700  pb-11"
     >
-      <div className="max-w-7xl ml-auto mr-auto flex justify-between items-center gap-x-6">
+      <div className="max-w-6xl ml-auto mr-auto flex justify-between items-center gap-x-6 lg:flex-wrap lg:justify-center">
         <div className="max-w-lg">
           <span className="text-xs font-medium border border-solid border-gray-400 rounded-lg py-2 px-3">
             {slice.primary.eyebrowheadline}
@@ -41,10 +41,10 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
             </PrismicLink>
           </div>
         </div>
-        <div className="relative">
+        <div className="relative ">
           <Shapes className={''} number={1} />
           <Shapes className={'absolute top-0 -left-40'} number={2} />
-          <Shapes className={'absolute bottom-0 -right-0'} number={3} />
+          <Shapes className={'absolute bottom-0 -right-20'} number={3} />
         </div>
       </div>
     </section>
