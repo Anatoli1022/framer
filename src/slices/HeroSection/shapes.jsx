@@ -44,22 +44,23 @@ export default function Shapes({ number, className }) {
           intensity={Math.PI}
         />
         <pointLight position={[-8, -8, -8]} decay={0} intensity={Math.PI} />
-        {number === 1 && <Dodecahedron frameSpeed={frameSpeed} />}
-        {number === 2 && <Capsule frameSpeed={frameSpeed} />}{' '}
-        {number === 3 && <Octahedron frameSpeed={frameSpeed} />}
+        {number === 1 && <Icosahedron frameSpeed={frameSpeed} />}
+        {number === 2 && <Dodecahedron frameSpeed={frameSpeed} />}{' '}
+        {number === 3 && <Dodecahedron frameSpeed={frameSpeed} />}
+        {/* {number === 3 && <Octahedron frameSpeed={frameSpeed} />} */}
         {/* <OrbitControls /> */}
       </Canvas>
     </div>
   );
 }
 
-export function Capsule({ frameSpeed }) {
+export function Dodecahedron({ frameSpeed }) {
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
 
   const ref = useRef();
   return (
-    <mesh ref={ref} position={[0, 0, 1]} rotation={[Math.PI / 1, -10, -10]}>
-      <capsuleGeometry args={[1, 1, 8, 20]} onClick={() => click} />
+    <mesh ref={ref} position={[0, 0, 2]} rotation={[Math.PI / 1, -10, -10]}>
+      <dodecahedronGeometry args={[1, 0, 1]} onClick={() => click} />
 
       <meshNormalMaterial>
         <GradientTexture
@@ -78,7 +79,7 @@ export function Octahedron({ frameSpeed }) {
   const ref = useRef();
   return (
     <mesh ref={ref} position={[0, 0, 1]} rotation={[Math.PI / 1, -10, -10]}>
-   <octahedronGeometry onClick={() => click}/>
+      <octahedronGeometry onClick={() => click} />
 
       <meshNormalMaterial>
         <GradientTexture
@@ -87,18 +88,17 @@ export function Octahedron({ frameSpeed }) {
           size={329}
         />
       </meshNormalMaterial>
-    
     </mesh>
   );
 }
 
-export function Dodecahedron({ frameSpeed }) {
+export function Icosahedron({ frameSpeed }) {
   const ref = useRef();
   useFrame((state, delta) => (ref.current.rotation.y += frameSpeed * delta));
 
   return (
     <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / -20, 0, -10]}>
-      <dodecahedronGeometry
+      <icosahedronGeometry
         attach="geometry"
         args={[1, 0, 1]}
         onClick={() => click()}

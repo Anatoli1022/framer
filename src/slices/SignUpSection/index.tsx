@@ -38,8 +38,8 @@ const SignUpSection = ({ slice }: SignUpSectionProps): JSX.Element => {
             />
           </PrismicLink>
         </div>
-        <Shapes number={1} className={'absolute left-16 -top-10'} />
-        <Shapes number={2} className={'absolute right-16 top-10'} />
+        <Shapes number={1} className={'absolute left-16 -top-10 lg:left-0 md:top-20 sm:top-40'} />
+        <Shapes number={2} className={'absolute right-16 top-10 lg:right-0 md:top-40 sm:top-72'} />
       </div>
     </section>
   );

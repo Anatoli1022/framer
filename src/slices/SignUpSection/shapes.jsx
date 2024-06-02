@@ -1,13 +1,15 @@
 'use client';
 
 // import * as THREE from 'three';
+import { useResize } from '@/app/lib/useResize/useResize';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { gsap } from 'gsap';
 import { useRef, useState } from 'react';
 import { GradientTexture, OrbitControls } from '@react-three/drei';
 
-export default function Shapes({ number ,className}) {
+export default function Shapes({ number, className }) {
   const [frameSpeed, setFrameSpeed] = useState(0.3);
+  const { width, isScreenSm, isScreenMd, isScreenLg, isScreenXl } = useResize();
   const click = () => {
     setFrameSpeed(frameSpeed + 1);
 
@@ -25,7 +27,10 @@ export default function Shapes({ number ,className}) {
   return (
     <div className={className}>
       <Canvas
-        style={{ height: '329px' }}
+        style={{
+          height: isScreenLg ? '329px' : '149px',
+          width: isScreenLg ? '300px' : '150px',
+        }}
         onClick={() => click()}
         className="cursor-pointer"
         shadows
@@ -76,11 +81,7 @@ export function Cone({ frameSpeed }) {
 
   return (
     <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / -20, 0, -10]}>
-      <coneGeometry
-        attach="geometry"
-       
-        onClick={() => click()}
-      />
+      <coneGeometry attach="geometry" onClick={() => click()} />
 
       <meshNormalMaterial>
         <GradientTexture
@@ -92,4 +93,3 @@ export function Cone({ frameSpeed }) {
     </mesh>
   );
 }
-
