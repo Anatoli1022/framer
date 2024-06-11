@@ -52,7 +52,7 @@ export default function Shapes({ number, className }: ShapesProps) {
         <pointLight position={[-8, -8, -8]} decay={0} intensity={Math.PI} />
         {number === 1 && <Icosahedron frameSpeed={frameSpeed} />}
         {number === 2 && <Dodecahedron frameSpeed={frameSpeed} />}
-        {/* {number === 3 && <Octahedron frameSpeed={frameSpeed} click={click}/>} */}
+        {number === 2 && <Dodecahedron frameSpeed={frameSpeed} />}
       </Canvas>
     </div>
   );
