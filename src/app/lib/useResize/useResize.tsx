@@ -9,32 +9,28 @@ import {
 } from './const-breakpoints';
 
 export const useResize = () => {
-  const [width, setWidth] = useState<number | null>(null);
+  const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    const handleResize = () => {
       setWidth(window.innerWidth);
+    };
 
-      const handleResize = (event: UIEvent) => {
-        if (event.target instanceof Window) {
-          setWidth(event.target.innerWidth);
-        }
-      };
+    handleResize();
 
-      window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return {
     width,
-    isScreenSm: width ? width >= SCREEN_SM : false,
-    isScreenMd: width ? width >= SCREEN_MD : false,
-    isScreenLg: width ? width >= SCREEN_LG : false,
-    isScreenXl: width ? width >= SCREEN_XL : false,
-    isScreenXxl: width ? width >= SCREEN_XXL : false,
+    isScreenSm: width >= SCREEN_SM,
+    isScreenMd: width >= SCREEN_MD,
+    isScreenLg: width >= SCREEN_LG,
+    isScreenXl: width >= SCREEN_XL,
+    isScreenXxl: width >= SCREEN_XXL,
   };
 };
