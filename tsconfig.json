@@ -27,6 +27,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/shared/shapes.jsx"
-, "src/app/lib/useResize/useResize.jsx"  ],
+, "src/app/lib/useResize/useResize.tsx"  ],
   "exclude": ["node_modules"]
 }
