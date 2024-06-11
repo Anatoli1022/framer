@@ -1,13 +1,12 @@
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
-import { PrismicText, PrismicImage, PrismicLink } from '@prismicio/react';
+import { PrismicText } from '@prismicio/react';
 import { createClient } from '@/prismicio';
 import { List } from '@/components/List';
 export type PricesSectionProps =
   SliceComponentProps<Content.PricesSectionSlice>;
 
 const PricesSection = ({ slice }: PricesSectionProps): JSX.Element => {
-
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -28,7 +27,7 @@ const PricesSection = ({ slice }: PricesSectionProps): JSX.Element => {
           <PrismicText field={slice.primary.text} />
         </p>
         <ul className="flex mt-10  justify-center gap-x-6 items-end lg:flex-col lg:items-center lg:gap-y-6">
-          <List  />
+          <List />
         </ul>
       </div>
     </section>

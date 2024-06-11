@@ -1,10 +1,10 @@
 import { Content } from '@prismicio/client';
 import {
   PrismicText,
-  PrismicLink,
   PrismicImage,
   SliceComponentProps,
 } from '@prismicio/react';
+import { PrismicNextLink } from '@prismicio/next';
 /**
  * Props for `Text`.
  */
@@ -41,13 +41,13 @@ const Text = ({ slice }: TextProps): JSX.Element => {
             {slice.primary.spantext}
           </span>
         </div>
-        <PrismicLink
+        <PrismicNextLink
           field={slice.primary.link}
           className={`block mt-8 text-base font-medium  text-center rounded-xl py-1 border border-solid duration-200 
        ${mostPopular ? 'text-black bg-white border-white hover:text-white hover:bg-transparent' : ' text-white bg-black border-black hover:text-black hover:bg-transparent'} `}
         >
           {slice.primary.label}
-        </PrismicLink>
+        </PrismicNextLink>
       </div>
       <ul className="mt-5">
         {slice.items.map((item, i) => {
@@ -56,6 +56,7 @@ const Text = ({ slice }: TextProps): JSX.Element => {
               <PrismicImage
                 field={slice.primary.image}
                 className={` ${mostPopular ? 'invert' : ''}`}
+                fallbackAlt=""
               />
               <p
                 className={`ml-4 text-sm ${mostPopular ? 'text-white' : 'text-black'}`}

@@ -1,9 +1,6 @@
 import { RichTextField } from '@prismicio/client';
-import {
-  JSXMapSerializer,
-  PrismicRichText,
-  PrismicLink,
-} from '@prismicio/react';
+import { JSXMapSerializer, PrismicRichText } from '@prismicio/react';
+import { PrismicNextLink } from '@prismicio/next';
 
 export const richTextComponents: JSXMapSerializer = {
   label: ({ node, children }) => {
@@ -12,14 +9,14 @@ export const richTextComponents: JSXMapSerializer = {
     }
   },
   heading1: ({ children }) => (
-    <h1 className="font-bold text-4xl">{children}</h1>
+    <h1 className="text-8xl mt-7 font-bold ">{children}</h1>
   ),
   heading2: ({ children }) => <h2 className="font-bold text-xl">{children}</h2>,
   heading3: ({ children }) => <h3 className="font-bold text-lg">{children}</h3>,
   hyperlink: ({ children, node }) => (
-    <PrismicLink field={node.data} className="font-bold underline">
+    <PrismicNextLink field={node.data} className="font-bold underline">
       {children}
-    </PrismicLink>
+    </PrismicNextLink>
   ),
 };
 

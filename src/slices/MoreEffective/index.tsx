@@ -1,6 +1,8 @@
 import { Content } from '@prismicio/client';
+import { PrismicNextImage } from '@prismicio/next';
 import { SliceComponentProps } from '@prismicio/react';
-import { PrismicText, PrismicImage, PrismicLink } from '@prismicio/react';
+import { PrismicText } from '@prismicio/react';
+import { PrismicNextLink } from '@prismicio/next';
 
 /**
  * Props for `MoreEffective`.
@@ -31,26 +33,40 @@ const MoreEffective = ({ slice }: MoreEffectiveProps): JSX.Element => {
           <PrismicText field={slice.primary.text} />
         </p>
         <div className="mt-10">
-          <PrismicImage field={slice.primary.image} />
+          <PrismicNextImage
+            field={slice.primary.image}
+            fallbackAlt=""
+            sizes="100vw"
+          />
         </div>
         <ul className="flex mt-20 gap-5  lg:flex-wrap justify-center items-center">
           {slice.items.map((item, i) => {
             return (
-              <li key={i} className='max-w-64'>
-                <PrismicImage field={item.image} className='w-4'/>
+              <li key={i} className="max-w-64">
+                <PrismicNextImage
+                  field={item.image}
+                  className="w-4"
+                  alt=""
+                  sizes="16px"
+                />
                 <h3 className="mt-3 font-bold text-lg">
                   <PrismicText field={item.title} />
                 </h3>
                 <p className="mt-2 font-normal text-base">
                   <PrismicText field={item.text} />
                 </p>
-                <PrismicLink
+                <PrismicNextLink
                   field={item.link}
                   className="flex items-center mt-2"
                 >
                   {item.label}
-                  <PrismicImage field={item.arrow} className="block ml-2 w-5" />
-                </PrismicLink>
+                  <PrismicNextImage
+                    field={item.arrow}
+                    className="block ml-2 w-5"
+                    alt=""
+                    sizes="20px"
+                  />
+                </PrismicNextLink>
               </li>
             );
           })}

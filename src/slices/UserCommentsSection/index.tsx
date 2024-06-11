@@ -1,6 +1,7 @@
 import { Content } from '@prismicio/client';
+import { PrismicNextImage } from '@prismicio/next';
 import { SliceComponentProps } from '@prismicio/react';
-import { PrismicText, PrismicImage } from '@prismicio/react';
+import { PrismicText } from '@prismicio/react';
 /**
  * Props for `UserCommentsSection`.
  */
@@ -40,7 +41,12 @@ const UserCommentsSection = ({
                 </p>
                 <div className="flex items-center mt-5 gap-x-2">
                   <div>
-                    <PrismicImage field={item.avatar} className="max-w-10" />
+                    <PrismicNextImage
+                      field={item.avatar}
+                      className="max-w-10"
+                      alt=""
+                      sizes="40px"
+                    />
                   </div>
                   <div>
                     <h3 className="text-base font-medium">
