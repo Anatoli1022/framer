@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
 import {
-  SCREEN_SM, SCREEN_MD, SCREEN_LG, SCREEN_XL, SCREEN_XXL,
+  SCREEN_SM,
+  SCREEN_MD,
+  SCREEN_LG,
+  SCREEN_XL,
+  SCREEN_XXL,
 } from './const-breakpoints';
 
 export const useResize = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(null);
 
   useEffect(() => {
+    setWidth(window.innerWidth);
     const handleResize = (event) => {
       setWidth(event.target.innerWidth);
     };
