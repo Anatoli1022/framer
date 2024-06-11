@@ -543,16 +543,6 @@ export interface HeroSecrionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   info: prismic.LinkField;
-
-  /**
-   * image field in *HeroSection → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_secrion.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
 }
 
 /**
