@@ -1,13 +1,23 @@
 'use client';
 
-// import * as THREE from 'three';
+import { useResize } from '@/app/lib/useResize/useResize';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { gsap } from 'gsap';
 import { useRef, useState } from 'react';
-import { GradientTexture, OrbitControls } from '@react-three/drei';
+import { GradientTexture } from '@react-three/drei';
+import THREE from 'three';
 
-export default function Shapes({ index }) {
+interface ShapesProps {
+  number: number;
+  className?: string;
+}
+interface GeometryProps {
+  frameSpeed: number;
+}
+
+export default function Shapes({ number, className }: ShapesProps) {
   const [frameSpeed, setFrameSpeed] = useState(0.3);
+  const { isScreenLg } = useResize();
   const click = () => {
     setFrameSpeed(frameSpeed + 1);
 
@@ -23,9 +33,12 @@ export default function Shapes({ index }) {
   };
 
   return (
-    <div>
+    <div className={className}>
       <Canvas
-        style={{ height: '329px' }}
+        style={{
+          height: isScreenLg ? '329px' : '149px',
+          width: isScreenLg ? '300px' : '150px',
+        }}
         onClick={() => click()}
         className="cursor-pointer"
         shadows
@@ -39,57 +52,51 @@ export default function Shapes({ index }) {
           decay={0}
           intensity={Math.PI}
         />
-        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        {index === 0 ? (
-          <Box frameSpeed={frameSpeed} />
+        <pointLight position={[-8, -8, -8]} decay={0} intensity={Math.PI} />
+        {number === 1 ? (
+          <Capsule frameSpeed={frameSpeed} />
         ) : (
-          <Triangle frameSpeed={frameSpeed} />
+          <Cone frameSpeed={frameSpeed} />
         )}
-        {/* <OrbitControls /> */}
       </Canvas>
     </div>
   );
 }
 
-export function Box({ frameSpeed }) {
+export function Capsule({ frameSpeed }: GeometryProps) {
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
 
-  const ref = useRef();
+  const ref = useRef<THREE.Mesh>(null!);
   return (
-    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / 1, -10, -10]}>
-      <boxGeometry args={[1, 1, 1]} onClick={() => click} />
+    <mesh ref={ref} position={[0, 0, 1]} rotation={[Math.PI / 1, -10, -10]}>
+      <capsuleGeometry args={[1, 1, 8, 20]} />
 
-      <meshStandardMaterial>
+      <meshNormalMaterial>
         <GradientTexture
           stops={[0, 1]}
           colors={['#FC5C7D', '#2c0be5']}
           size={329}
         />
-      </meshStandardMaterial>
+      </meshNormalMaterial>
     </mesh>
   );
 }
 
-export function Triangle({ frameSpeed }) {
-  const ref = useRef();
+export function Cone({ frameSpeed }: GeometryProps) {
+  const ref = useRef<THREE.Mesh>(null!);
   useFrame((state, delta) => (ref.current.rotation.y += frameSpeed * delta));
 
   return (
-    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / -10, -1, -10]}>
-      <tetrahedronGeometry
-        attach="geometry"
-        args={[1, 0]}
-        onClick={() => click()}
-      />
+    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / -20, 0, -10]}>
+      <coneGeometry attach="geometry" />
 
-      <meshStandardMaterial>
+      <meshNormalMaterial>
         <GradientTexture
           stops={[0, 1]}
-          colors={['#b92b27', '#2c0be5']}
+          colors={['#12c2e9', '#c471ed']}
           size={329}
         />
-      </meshStandardMaterial>
+      </meshNormalMaterial>
     </mesh>
   );
 }
-

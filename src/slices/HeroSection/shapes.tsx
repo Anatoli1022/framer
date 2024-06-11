@@ -4,7 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { gsap } from 'gsap';
 import { useRef, useState } from 'react';
 import { GradientTexture } from '@react-three/drei';
-import * as THREE from 'three';
+import THREE from 'three';
 interface ShapesProps {
   number: number;
   className?: string;
