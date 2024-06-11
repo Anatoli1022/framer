@@ -11,19 +11,21 @@ export const useResize = () => {
   const [width, setWidth] = useState<number | null>(null);
 
   useEffect(() => {
-    setWidth(window.innerWidth);
+    if (typeof window !== 'undefined') {
+      setWidth(window.innerWidth);
 
-    const handleResize = (event: UIEvent) => {
-      if (event.target instanceof Window) {
-        setWidth(event.target.innerWidth);
-      }
-    };
+      const handleResize = (event: UIEvent) => {
+        if (event.target instanceof Window) {
+          setWidth(event.target.innerWidth);
+        }
+      };
 
-    window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
   }, []);
 
   return {
