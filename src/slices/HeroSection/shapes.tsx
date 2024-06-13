@@ -1,7 +1,6 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { gsap } from 'gsap';
 import { useCallback, useRef, useState } from 'react';
 import { GradientTexture } from '@react-three/drei';
 import THREE from 'three';
@@ -13,7 +12,7 @@ interface ShapesProps {
 interface GeometryProps {
   frameSpeed: number;
 }
-export const Shapes = ({ number, className }: ShapesProps) => {
+export const Shapes = React.memo(({ number, className }: ShapesProps) => {
   const [frameSpeed, setFrameSpeed] = useState<number>(0.3);
   const click = useCallback(() => {
     setFrameSpeed(frameSpeed + 1);
@@ -57,7 +56,8 @@ export const Shapes = ({ number, className }: ShapesProps) => {
       </Canvas>
     </div>
   );
-};
+});
+Shapes.displayName = 'HeroShapes';
 
 const Dodecahedron = React.memo(({ frameSpeed }: GeometryProps) => {
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
@@ -78,27 +78,6 @@ const Dodecahedron = React.memo(({ frameSpeed }: GeometryProps) => {
   );
 });
 Dodecahedron.displayName = 'Dodecahedron';
-
-const Octahedron = React.memo(({ frameSpeed }: GeometryProps) => {
-  const ref = useRef<THREE.Mesh>(null!);
-
-  useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
-
-  return (
-    <mesh ref={ref} position={[0, 0, 1]} rotation={[Math.PI / 1, -10, -10]}>
-      <octahedronGeometry />
-      <meshNormalMaterial>
-        <GradientTexture
-          stops={[0, 1]}
-          colors={['#FC5C7D', '#2c0be5']}
-          size={329}
-        />
-      </meshNormalMaterial>
-    </mesh>
-  );
-});
-
-Octahedron.displayName = 'Octahedron';
 
 const Icosahedron = React.memo(({ frameSpeed }: GeometryProps) => {
   const ref = useRef<THREE.Mesh>(null!);

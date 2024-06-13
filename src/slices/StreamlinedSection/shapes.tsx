@@ -1,10 +1,10 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { gsap } from 'gsap';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { GradientTexture } from '@react-three/drei';
 import THREE from 'three';
+import React from 'react';
 interface ShapesProps {
   index: number;
 }
@@ -13,9 +13,10 @@ interface GeometryProps {
   frameSpeed: number;
 }
 
-export default function Shapes({ index }: ShapesProps) {
+export const Shapes = React.memo(({ index }: ShapesProps) => {
   const [frameSpeed, setFrameSpeed] = useState(0.3);
-  const click = () => {
+
+  const click = useCallback(() => {
     setFrameSpeed(frameSpeed + 1);
 
     const interval = setInterval(() => {
@@ -27,7 +28,7 @@ export default function Shapes({ index }: ShapesProps) {
         return prevSpeed - 0.1;
       });
     }, 900);
-  };
+  }, [frameSpeed]);
 
   return (
     <div>
@@ -55,9 +56,10 @@ export default function Shapes({ index }: ShapesProps) {
       </Canvas>
     </div>
   );
-}
+});
+Shapes.displayName = 'StreamlineShapes';
 
-export function Box({ frameSpeed }: GeometryProps) {
+const Box = React.memo(({ frameSpeed }: GeometryProps) => {
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
 
   const ref = useRef<THREE.Mesh>(null!);
@@ -74,9 +76,11 @@ export function Box({ frameSpeed }: GeometryProps) {
       </meshStandardMaterial>
     </mesh>
   );
-}
+});
 
-export function Triangle({ frameSpeed }: GeometryProps) {
+Box.displayName = 'Box';
+
+const Triangle = React.memo(({ frameSpeed }: GeometryProps) => {
   const ref = useRef<THREE.Mesh>(null!);
   useFrame((state, delta) => (ref.current.rotation.y += frameSpeed * delta));
 
@@ -93,53 +97,6 @@ export function Triangle({ frameSpeed }: GeometryProps) {
       </meshStandardMaterial>
     </mesh>
   );
-}
+});
 
-// 'use client';
-// import { useRef, useState } from 'react';
-// import { Canvas, useFrame } from '@react-three/fiber';
-// import { OrbitControls } from '@react-three/drei';
-
-// function Box(props) {
-//   // This reference gives us direct access to the THREE.Mesh object
-//   const ref = useRef();
-//   // Hold state for hovered and clicked events
-//   const [hovered, hover] = useState(false);
-//   const [clicked, click] = useState(false);
-//   // Subscribe this component to the render-loop, rotate the mesh every frame
-//   useFrame((state, delta) => (ref.current.rotation.x += delta));
-//   // Return the view, these are regular Threejs elements expressed in JSX
-//   return (
-//     <mesh
-//       {...props}
-//       ref={ref}
-//       scale={clicked ? 1.5 : 1}
-//       onClick={(event) => click(!clicked)}
-//       onPointerOver={(event) => (event.stopPropagation(), hover(true))}
-//       onPointerOut={(event) => hover(false)}
-//     >
-//       <cylinderGeometry args={[1, 1, 1]} />
-//       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-//     </mesh>
-//   );
-// }
-
-// export default function Boxy() {
-//   return (
-//     <Canvas className="max-h-96"
-//   >
-//       <ambientLight intensity={Math.PI / 2} />
-//       <spotLight
-//         position={[10, 10, 10]}
-//         angle={0.15}
-//         penumbra={1}
-//         decay={0}
-//         intensity={Math.PI}
-//       />
-//       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-//       {/* <Box position={[-1.2, 0, 0]} /> */}
-//       <Box position={[0, 0, 0]} />
-//       <OrbitControls />
-//     </Canvas>
-//   );
-// }
+Triangle.displayName = 'Triangle';

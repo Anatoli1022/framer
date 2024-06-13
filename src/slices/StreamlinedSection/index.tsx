@@ -1,7 +1,7 @@
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { PrismicText } from '@prismicio/react';
-import Shapes from './shapes';
+import {Shapes} from './shapes';
 /**
  * Props for `StreamlinedSection`.
  */
