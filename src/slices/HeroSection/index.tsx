@@ -2,7 +2,7 @@ import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 
 import { PrismicText } from '@prismicio/react';
-import Shapes from './shapes';
+import {Shapes} from './shapes';
 import { RichText } from '../RichText';
 import { PrismicNextLink } from '@prismicio/next';
 
