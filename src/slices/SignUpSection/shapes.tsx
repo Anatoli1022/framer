@@ -2,11 +2,10 @@
 
 import { useResize } from '@/app/lib/useResize/useResize';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { gsap } from 'gsap';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { GradientTexture } from '@react-three/drei';
 import THREE from 'three';
-
+import React from 'react';
 interface ShapesProps {
   number: number;
   className?: string;
@@ -15,10 +14,10 @@ interface GeometryProps {
   frameSpeed: number;
 }
 
-export default function Shapes({ number, className }: ShapesProps) {
+export const Shapes = React.memo(({ number, className }: ShapesProps) => {
   const [frameSpeed, setFrameSpeed] = useState(0.3);
   const { isScreenLg } = useResize();
-  const click = () => {
+  const click = useCallback(() => {
     setFrameSpeed(frameSpeed + 1);
 
     const interval = setInterval(() => {
@@ -30,7 +29,7 @@ export default function Shapes({ number, className }: ShapesProps) {
         return prevSpeed - 0.1;
       });
     }, 900);
-  };
+  }, [frameSpeed]);
 
   return (
     <div className={className}>
@@ -61,9 +60,11 @@ export default function Shapes({ number, className }: ShapesProps) {
       </Canvas>
     </div>
   );
-}
+});
 
-export function Capsule({ frameSpeed }: GeometryProps) {
+Shapes.displayName = 'SignUpShapes';
+
+const Capsule = React.memo(({ frameSpeed }: GeometryProps) => {
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
 
   const ref = useRef<THREE.Mesh>(null!);
@@ -80,9 +81,9 @@ export function Capsule({ frameSpeed }: GeometryProps) {
       </meshNormalMaterial>
     </mesh>
   );
-}
-
-export function Cone({ frameSpeed }: GeometryProps) {
+});
+Capsule.displayName = 'Capsule';
+const Cone = ({ frameSpeed }: GeometryProps) => {
   const ref = useRef<THREE.Mesh>(null!);
   useFrame((state, delta) => (ref.current.rotation.y += frameSpeed * delta));
 
@@ -99,4 +100,5 @@ export function Cone({ frameSpeed }: GeometryProps) {
       </meshNormalMaterial>
     </mesh>
   );
-}
+};
+Cone.displayName = 'Cone';
