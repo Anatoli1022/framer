@@ -1,10 +1,6 @@
 import { Content } from '@prismicio/client';
-import {
-  PrismicText,
-  PrismicImage,
-  SliceComponentProps,
-} from '@prismicio/react';
-import { PrismicNextLink } from '@prismicio/next';
+import { PrismicText, SliceComponentProps } from '@prismicio/react';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 /**
  * Props for `Text`.
  */
@@ -53,10 +49,12 @@ const Text = ({ slice }: TextProps): JSX.Element => {
         {slice.items.map((item, i) => {
           return (
             <li key={i} className="flex mt-5 first:mt-0">
-              <PrismicImage
+              <PrismicNextImage
                 field={slice.primary.image}
                 className={` ${mostPopular ? 'invert' : ''}`}
                 fallbackAlt=""
+                width={14}
+                height={20}
               />
               <p
                 className={`ml-4 text-sm ${mostPopular ? 'text-white' : 'text-black'}`}

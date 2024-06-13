@@ -1,7 +1,7 @@
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { PrismicText } from '@prismicio/react';
-import { createClient } from '@/prismicio';
+
 import { List } from '@/components/List';
 export type PricesSectionProps =
   SliceComponentProps<Content.PricesSectionSlice>;
