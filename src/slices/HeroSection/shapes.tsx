@@ -2,9 +2,10 @@
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { gsap } from 'gsap';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { GradientTexture } from '@react-three/drei';
 import THREE from 'three';
+import React from 'react';
 interface ShapesProps {
   number: number;
   className?: string;
@@ -12,9 +13,9 @@ interface ShapesProps {
 interface GeometryProps {
   frameSpeed: number;
 }
-export default function Shapes({ number, className }: ShapesProps) {
+export const Shapes = ({ number, className }: ShapesProps) => {
   const [frameSpeed, setFrameSpeed] = useState<number>(0.3);
-  const click = () => {
+  const click = useCallback(() => {
     setFrameSpeed(frameSpeed + 1);
 
     const interval = setInterval(() => {
@@ -26,7 +27,7 @@ export default function Shapes({ number, className }: ShapesProps) {
         return prevSpeed - 0.1;
       });
     }, 900);
-  };
+  }, [frameSpeed]);
 
   return (
     <div className={className}>
@@ -56,9 +57,9 @@ export default function Shapes({ number, className }: ShapesProps) {
       </Canvas>
     </div>
   );
-}
+};
 
-export function Dodecahedron({ frameSpeed }: GeometryProps) {
+const Dodecahedron = React.memo(({ frameSpeed }: GeometryProps) => {
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
 
   const ref = useRef<THREE.Mesh>(null!);
@@ -75,16 +76,17 @@ export function Dodecahedron({ frameSpeed }: GeometryProps) {
       </meshNormalMaterial>
     </mesh>
   );
-}
+});
+Dodecahedron.displayName = 'Dodecahedron';
 
-export function Octahedron({ frameSpeed }: GeometryProps) {
+const Octahedron = React.memo(({ frameSpeed }: GeometryProps) => {
+  const ref = useRef<THREE.Mesh>(null!);
+
   useFrame((state, delta) => (ref.current.rotation.x += frameSpeed * delta));
 
-  const ref = useRef<THREE.Mesh>(null!);
   return (
     <mesh ref={ref} position={[0, 0, 1]} rotation={[Math.PI / 1, -10, -10]}>
       <octahedronGeometry />
-
       <meshNormalMaterial>
         <GradientTexture
           stops={[0, 1]}
@@ -94,16 +96,18 @@ export function Octahedron({ frameSpeed }: GeometryProps) {
       </meshNormalMaterial>
     </mesh>
   );
-}
+});
 
-export function Icosahedron({ frameSpeed }: GeometryProps) {
+Octahedron.displayName = 'Octahedron';
+
+const Icosahedron = React.memo(({ frameSpeed }: GeometryProps) => {
   const ref = useRef<THREE.Mesh>(null!);
+
   useFrame((state, delta) => (ref.current.rotation.y += frameSpeed * delta));
 
   return (
     <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / -20, 0, -10]}>
-      <icosahedronGeometry attach="geometry" args={[1, 0]} />
-
+      <icosahedronGeometry args={[1, 0]} />
       <meshNormalMaterial>
         <GradientTexture
           stops={[0, 1]}
@@ -113,4 +117,6 @@ export function Icosahedron({ frameSpeed }: GeometryProps) {
       </meshNormalMaterial>
     </mesh>
   );
-}
+});
+
+Icosahedron.displayName = 'Icosahedron';
