@@ -26,7 +26,7 @@ const UserCommentsSection = ({
             {slice.primary.span}
           </span>
         </div>
-        <h2 className="text-center text-6xl font-bold mt-5">
+        <h2 className="text-center text-6xl font-bold mt-5 md:text-5xl sm:text-4xl">
           <PrismicText field={slice.primary.title} />
         </h2>
         <ul className=" flex flex-wrap gap-x-5 gap-y-6 mt-12 justify-center">
@@ -45,7 +45,8 @@ const UserCommentsSection = ({
                       field={item.avatar}
                       className="max-w-10"
                       alt=""
-                      sizes="40px"
+                      width={40}
+                      height={40}
                     />
                   </div>
                   <div>

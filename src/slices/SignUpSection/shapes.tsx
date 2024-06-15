@@ -1,6 +1,6 @@
 'use client';
 
-import { useResize } from '@/app/lib/useResize/useResize';
+
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useCallback, useRef, useState } from 'react';
 import { GradientTexture } from '@react-three/drei';
@@ -16,7 +16,6 @@ interface GeometryProps {
 
 export const Shapes = React.memo(({ number, className }: ShapesProps) => {
   const [frameSpeed, setFrameSpeed] = useState(0.3);
-  const { isScreenLg } = useResize();
   const click = useCallback(() => {
     setFrameSpeed(frameSpeed + 1);
 
@@ -34,10 +33,6 @@ export const Shapes = React.memo(({ number, className }: ShapesProps) => {
   return (
     <div className={className}>
       <Canvas
-        style={{
-          height: isScreenLg ? '329px' : '149px',
-          width: isScreenLg ? '300px' : '150px',
-        }}
         onClick={() => click()}
         className="cursor-pointer"
         shadows

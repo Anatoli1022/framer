@@ -2,7 +2,7 @@ import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 
 import { PrismicText } from '@prismicio/react';
-import {Shapes} from './shapes';
+import { Shapes } from './shapes';
 import { RichText } from '../RichText';
 import { PrismicNextLink } from '@prismicio/next';
 
@@ -15,7 +15,7 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className="mt-8 bg-gradient-to-b from-white to-blue-700  pb-11"
     >
-      <div className="max-w-6xl ml-auto mr-auto flex justify-between items-center gap-x-6 lg:flex-wrap lg:justify-center">
+      <div className="px-1 max-w-6xl ml-auto mr-auto flex justify-between items-center gap-x-6 lg:flex-wrap lg:justify-center">
         <div className="max-w-lg">
           <span className="text-xs font-medium border border-solid border-gray-400 rounded-lg py-2 px-3">
             {slice.primary.eyebrowheadline}
@@ -42,10 +42,23 @@ const HeroSection = ({ slice }: HeroSectionProps): JSX.Element => {
             </PrismicNextLink>
           </div>
         </div>
-        <div className="relative ">
-          <Shapes className={''} number={1} />
-          <Shapes className={'absolute top-0 -left-40'} number={2} />
-          <Shapes className={'absolute bottom-0 -right-20'} number={2} />
+        <div className="relative sm:mt-6">
+          <Shapes
+            className={'h-[600px] w-[410px] sm:h-[400px] sm:w-[360px]'}
+            number={1}
+          />
+          <Shapes
+            className={
+              'absolute top-10 -left-28 sm:left-0 sm:top-0 h-[120px] w-[120px] sm:w-[90px] sm:h-[90px]'
+            }
+            number={2}
+          />
+          <Shapes
+            className={
+              'absolute bottom-8 -right-10 sm:right-0 h-[120px] w-[120px] sm:w-[90px] sm:h-[90px]'
+            }
+            number={2}
+          />
         </div>
       </div>
     </section>

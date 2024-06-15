@@ -13,7 +13,7 @@ export const Navigation = async ({
       <PrismicNextLink field={navigation.data.logo_link}>
         <PrismicImage field={navigation.data.logo} />
       </PrismicNextLink>
-      <ul className="flex gap-x-6 items-center">
+      <ul className="flex gap-x-6 items-center sm:hidden">
         {isFilled.group(navigation.data.menu_items) &&
           navigation.data.menu_items.map((item) => {
             return (
