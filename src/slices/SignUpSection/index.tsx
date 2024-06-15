@@ -15,7 +15,7 @@ const SignUpSection = ({ slice }: SignUpSectionProps): JSX.Element => {
       className="bg-gradient-to-b from-white bg-indigo-200 mt-28 pb-28 "
     >
       <div className="max-w-7xl ml-auto mr-auto text-center relative">
-        <h2 className="text-6xl font-bold">
+        <h2 className="text-6xl font-bold md:text-5xl sm:text-4xl">
           <PrismicText field={slice.primary.title} />
         </h2>
         <p className="text-xl font-normal mt-5 ml-auto mr-auto max-w-xl ">
@@ -44,11 +44,15 @@ const SignUpSection = ({ slice }: SignUpSectionProps): JSX.Element => {
         </div>
         <Shapes
           number={1}
-          className={'absolute left-16 -top-10 lg:left-0 md:top-20 sm:top-40'}
+          className={
+            'w-[300px] h-[329px] absolute left-16 -top-10 lg:left-0 lg:top-10 lg:w-[200px] lg:h-[200px] md:top-20 md:w-[150px] md:h-[150px]  sm:top-30 '
+          }
         />
         <Shapes
           number={2}
-          className={'absolute right-16 top-10 lg:right-0 md:top-40 sm:top-72'}
+          className={
+            'w-[300px] h-[329px] absolute right-16 top-10 lg:right-0 lg:top-30  lg:w-[200px] lg:h-[200px] md:top-40  md:w-[150px] md:h-[150px] '
+          }
         />
       </div>
     </section>

@@ -31,9 +31,8 @@ export const Shapes = React.memo(({ index }: ShapesProps) => {
   }, [frameSpeed]);
 
   return (
-    <div>
+    <div className="mx-auto  h-80 w-80">
       <Canvas
-        style={{ height: '329px' }}
         onClick={click}
         className="cursor-pointer"
         shadows

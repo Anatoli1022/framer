@@ -5,6 +5,7 @@ import { useCallback, useRef, useState } from 'react';
 import { GradientTexture } from '@react-three/drei';
 import THREE from 'three';
 import React from 'react';
+
 interface ShapesProps {
   number: number;
   className?: string;
@@ -14,6 +15,7 @@ interface GeometryProps {
 }
 export const Shapes = React.memo(({ number, className }: ShapesProps) => {
   const [frameSpeed, setFrameSpeed] = useState<number>(0.3);
+
   const click = useCallback(() => {
     setFrameSpeed(frameSpeed + 1);
 
@@ -31,11 +33,6 @@ export const Shapes = React.memo(({ number, className }: ShapesProps) => {
   return (
     <div className={className}>
       <Canvas
-        style={
-          number === 1
-            ? { height: '600px', width: '400px' }
-            : { height: '200px', width: '200px' }
-        }
         onClick={click}
         className="cursor-pointer"
         shadows
@@ -64,7 +61,7 @@ const Dodecahedron = React.memo(({ frameSpeed }: GeometryProps) => {
 
   const ref = useRef<THREE.Mesh>(null!);
   return (
-    <mesh ref={ref} position={[0, 0, 2]} rotation={[Math.PI / 1, -10, -10]}>
+    <mesh ref={ref} position={[0, 0, 3]} rotation={[Math.PI / 1, -10, -10]}>
       <dodecahedronGeometry args={[1, 0]} />
 
       <meshNormalMaterial>

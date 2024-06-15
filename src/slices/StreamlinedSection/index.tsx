@@ -24,7 +24,7 @@ const StreamlinedSection = ({
         <span className="text-xs font-medium py-2.5 px-3.5 border border-solid border-gray-300 rounded-lg">
           {slice.primary.span}
         </span>{' '}
-        <h2 className="text-6xl font-bold mt-6 ml-auto mr-auto max-w-2xl">
+        <h2 className="text-6xl font-bold mt-6 ml-auto mr-auto max-w-2xl md:text-5xl sm:text-4xl">
           <PrismicText field={slice.primary.title} />
         </h2>
         <p className="text-xl font-normal mt-5 ml-auto mr-auto max-w-lg">
@@ -35,7 +35,7 @@ const StreamlinedSection = ({
             return (
               <li
                 key={i}
-                className="p-10 rounded-3xl border border-solid border-gray-100 shadow-xl"
+                className="p-10 rounded-3xl border border-solid border-gray-100 shadow-xl sm:p-5"
               >
                 <Shapes index={i} />
                 <h3 className="text-2xl font-bold">

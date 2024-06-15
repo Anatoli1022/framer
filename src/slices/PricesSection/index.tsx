@@ -20,7 +20,7 @@ const PricesSection = ({ slice }: PricesSectionProps): JSX.Element => {
           </span>
         </div>
 
-        <h2 className="ml-auto mr-auto text-6xl font-bold mt-5 max-w-2xl text-center">
+        <h2 className="ml-auto mr-auto text-6xl font-bold mt-5 max-w-2xl text-center md:text-5xl sm:text-4xl">
           <PrismicText field={slice.primary.title} />
         </h2>
         <p className="ml-auto mr-auto text-xl font-normal mt-5 max-w-lg text-center">
