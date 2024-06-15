@@ -12,7 +12,12 @@ export const Footer = async () => {
       <div className="  max-w-7xl ml-auto mr-auto flex justify-between sm:flex-col">
         <div className="max-w-60">
           <PrismicNextLink field={data.data.logo_link}>
-            <PrismicNextImage field={data.data.logo} alt="" sizes="24px" />
+            <PrismicNextImage
+              field={data.data.logo}
+              alt=""
+              width={64}
+              height={55}
+            />
           </PrismicNextLink>
           <p className="text-gray-400 text-sm mt-5">
             <PrismicText field={data.data.text} />
@@ -26,7 +31,8 @@ export const Footer = async () => {
                       field={item.image_link}
                       className="w-6"
                       fallbackAlt=""
-                      sizes="24px"
+                      width={24}
+                      height={24}
                     />
                   </PrismicNextLink>
                 </li>

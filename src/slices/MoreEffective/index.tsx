@@ -32,11 +32,13 @@ const MoreEffective = ({ slice }: MoreEffectiveProps): JSX.Element => {
         <p className="ml-auto mr-auto text-xl font-normal mt-5 max-w-lg text-center">
           <PrismicText field={slice.primary.text} />
         </p>
-        <div className="mt-10">
+        <div className="mt-10 max-w-5xl mr-auto  ml-auto">
           <PrismicNextImage
             field={slice.primary.image}
             fallbackAlt=""
             sizes="100vw"
+            width={1024}
+            height={636}
           />
         </div>
         <ul className="flex mt-20 gap-5  lg:flex-wrap justify-center items-center">
@@ -47,7 +49,8 @@ const MoreEffective = ({ slice }: MoreEffectiveProps): JSX.Element => {
                   field={item.image}
                   className="w-4"
                   alt=""
-                  sizes="16px"
+                  width={16}
+                  height={16}
                 />
                 <h3 className="mt-3 font-bold text-lg">
                   <PrismicText field={item.title} />
@@ -64,7 +67,8 @@ const MoreEffective = ({ slice }: MoreEffectiveProps): JSX.Element => {
                     field={item.arrow}
                     className="block ml-2 w-5"
                     alt=""
-                    sizes="20px"
+                    width={20}
+                    height={20}
                   />
                 </PrismicNextLink>
               </li>

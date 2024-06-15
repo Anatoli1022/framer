@@ -1,7 +1,7 @@
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { PrismicText } from '@prismicio/react';
-import {Shapes }from './shapes';
+import { Shapes } from './shapes';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 export type SignUpSectionProps =
@@ -36,7 +36,8 @@ const SignUpSection = ({ slice }: SignUpSectionProps): JSX.Element => {
             <PrismicNextImage
               field={slice.primary.arrow}
               className="align-middle block ml-2"
-              sizes="20px"
+              height={20}
+              width={20}
               fallbackAlt=""
             />
           </PrismicNextLink>

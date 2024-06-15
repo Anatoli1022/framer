@@ -45,7 +45,8 @@ const UserCommentsSection = ({
                       field={item.avatar}
                       className="max-w-10"
                       alt=""
-                      sizes="40px"
+                      width={40}
+                      height={40}
                     />
                   </div>
                   <div>
